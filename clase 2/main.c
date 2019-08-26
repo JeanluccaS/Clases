@@ -21,7 +21,7 @@ int main()
     float promedioEnPesos;
     int contador=0;
     int acumulador=0;
-
+    int porcentaje;
 
     printf ("ingrese 5 tipos de moneda con sus respectivos valores \n");
     for(i=0;i<=4;i++)
@@ -61,6 +61,7 @@ int main()
    // printf("%d\n\n", contador );
     }
     promedioEnPesos=(float)acumulador/contador;
+    porcentaje=contador*100/i;
     if(primerDolar==0)
     {
         printf("No se registro ningun dolar ");
@@ -76,6 +77,7 @@ int main()
     else
     {
         printf("el promedio en pesos es: %f",promedioEnPesos);
+        printf("El porcentaje de pesos ingresados es: %d",porcentaje);
     }
 
     return 0;
