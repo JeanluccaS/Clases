@@ -120,3 +120,24 @@ int calcularMinimo(int vector[],int tam)
             }
             return minimo;
 }
+
+void ordenarVector(int vector[],int tam) /** le burbuja metodo (ordenamiento)*/
+{
+    int aux;   /** para el swap  c = a || a = b || b = c (las diagonales!!) */
+    int i;
+    int j;
+    for(i=0;i<tam-1;i++)  /** mecanica para mover elementos dentro del vector*/
+    {
+        for(j=i+1;i<tam;j++)
+        {
+            if(vector[i]>vector[j]) /** criterio de ordenamiento*/
+            {
+                aux=vector[i];
+                vector[i]=vector[j];
+                vector[j]=aux;
+            }
+        }
+    }
+
+}
+

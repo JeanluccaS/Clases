@@ -16,3 +16,5 @@ void mostrarMinimo(int[],int);
 int calcularMaximo(int[],int);
 
 int calcularMinimo(int[],int);
+
+void ordenarVector(int[],int);
