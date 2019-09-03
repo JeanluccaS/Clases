@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1567518131 source:c:\users\alumno\desktop\arrays\main.c
+	"prototipos.h"
+
+1567518191 source:c:\users\alumno\desktop\arrays\funciones.c
+	"prototipos.h"
+
+1567518131 c:\users\alumno\desktop\arrays\prototipos.h
+	<stdio.h>
+	<stdlib.h>
+
