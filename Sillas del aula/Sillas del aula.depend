@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1568041749 source:c:\users\alumno\desktop\sillas del aula\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"prototipos.h"
+
+1568041790 source:c:\users\alumno\desktop\sillas del aula\main.c
+	"prototipos.h"
+
+1568041749 c:\users\alumno\desktop\sillas del aula\prototipos.h
+	<stdio.h>
+	<stdlib.h>
+
