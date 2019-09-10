@@ -14,8 +14,6 @@ int main()
    // inicializarArray(arrayDeSillas,CANTIDAD,-1);
     cargarDatosConHardcode(arrayDeSillas,CANTIDAD);
     cargarEdadesConHardcode(arrayDeEdades,CANTIDAD);
-
-    printf("\n\n\n");
     mostrarVectores(arrayDeSillas,arrayDeEdades,CANTIDAD);
 
     return 0;

@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "prototipos.h"
 
+/// hoy se hace un completa2 de esto.
+
 void cargarDatosConHardcode(int vectorSillas[],int tam)
 {
     int i;

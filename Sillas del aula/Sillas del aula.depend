@@ -11,3 +11,15 @@
 	<stdio.h>
 	<stdlib.h>
 
+1568116057 source:c:\users\alumno\desktop\pipo\clases\sillas del aula\main.c
+	"prototipos.h"
+
+1568116057 c:\users\alumno\desktop\pipo\clases\sillas del aula\prototipos.h
+	<stdio.h>
+	<stdlib.h>
+
+1568116217 source:c:\users\alumno\desktop\pipo\clases\sillas del aula\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"prototipos.h"
+
