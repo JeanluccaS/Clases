@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1568126056 source:c:\users\alumno\desktop\pipo\clases\clase 6\main.c
+1568721235 source:c:\users\alumno\desktop\pipo\clases\clase 6\main.c
 	"prototipos.h"
 
-1568126056 source:c:\users\alumno\desktop\pipo\clases\clase 6\funciones.c
+1568721235 source:c:\users\alumno\desktop\pipo\clases\clase 6\funciones.c
 	"prototipos.h"
 
-1568123912 c:\users\alumno\desktop\pipo\clases\clase 6\prototipos.h
+1568721235 c:\users\alumno\desktop\pipo\clases\clase 6\prototipos.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
