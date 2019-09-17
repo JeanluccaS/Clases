@@ -72,7 +72,7 @@ void hardcodearAlumno(eAlumno alumnos[],int tam)
     }
 }
 
-void buscarAlumno(eAlumno alumnos[],int cantidad)
+int buscarAlumno(eAlumno alumnos[],int cantidad)
 {
     int i;
     int numero;
@@ -83,16 +83,12 @@ void buscarAlumno(eAlumno alumnos[],int cantidad)
         if(numero==alumnos[i].legajo)
         {
             loEncontre=1;
+            printf("\nLegajo\t\tNombre\t\tNota\n");
             mostrarAlumno(alumnos[i]);
         }
 
     }
-    if(loEncontre==0)
-    {
-        printf("\nNo encontre un carajo");
-    }
-
-
+    return loEncontre;
 }
 
 void pedirString (char mensaje[],char contenido[])
@@ -118,4 +114,25 @@ int pedirEntero (char mensaje[])
     scanf("%d",&numero);
 
     return numero;
+}
+
+int borrarAlumno (eAlumno alumnos[], int cantidad)
+{
+     int i;
+     int alumnoABorrar=0; //0 si no se pudo borrar, 1 si se pudo borrar
+     alumnoABorrar=buscarAlumno(alumnos,cantidad);
+     for(i=0;i<cantidad;i++)
+     {
+         if(alumnoABorrar==1)
+        {
+            alumnoABorrar=1;
+            alumnos[i].estaVacio=0;
+            listarAlumnos(alumnos,cantidad);
+            break;
+        }
+
+     }
+     return alumnoABorrar;
+
+
 }

@@ -16,6 +16,7 @@ int main()
     hardcodearAlumno(listadoDeAlumnos,MAX);
     listarAlumnos(listadoDeAlumnos,MAX);
     buscarAlumno(listadoDeAlumnos,MAX);
+    borrarAlumno(listadoDeAlumnos,MAX);
     indice=dameIndiceLibre(listadoDeAlumnos,MAX);
 
 

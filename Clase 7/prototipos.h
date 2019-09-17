@@ -14,6 +14,8 @@ void hardcodearAlumno(eAlumno[],int cantidad);
 void listarAlumnos(eAlumno[],int cantidad);
 void mostrarAlumno(eAlumno);
 int dameIndiceLibre(eAlumno[],int cantidad);
-void buscarAlumno(eAlumno[],int cantidad);
+
 void pedirString (char mensaje[],char contenido[]);
 int pedirEntero (char mensaje[]);
+int buscarAlumno(eAlumno[],int cantidad);
+int borrarAlumno(eAlumno[],int cantidad);
