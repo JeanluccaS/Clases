@@ -44,7 +44,7 @@ void mostrarAlumno(eAlumno alumno)
 {
     printf ("\n%d",alumno.legajo);
     printf("\t\t%s",alumno.nombre);
-    printf("\t\t%d\n",alumno.nota);
+    printf("\t\t%d",alumno.nota);
 }
 
 
@@ -126,20 +126,25 @@ int pedirEntero (char mensaje[])
 int borrarAlumno (eAlumno alumnos[], int cantidad)
 {
     int i;
-    int alumnoABorrar=0; //0 si no se pudo borrar, 1 si se pudo borrar
-    alumnoABorrar=buscarAlumno(alumnos,cantidad);
-    for(i=0; i<cantidad; i++)
-    {
-        if(alumnoABorrar==1)
+    int seBorro=0; //0 si no se pudo borrar, 1 si se pudo borrar
+    int alumnoABorrar;
+    alumnoABorrar=pedirEntero("Ingrese el legajo a buscar ");
+
+
+
+        for(i=0; i<cantidad; i++)
         {
-            alumnoABorrar=1;
+            seBorro=1;
+            if(alumnos[i].estaVacio==OCUPADO && alumnos[i].legajo==alumnoABorrar)
+            {
             alumnos[i].estaVacio=LIBRE;
             printf("\nEl alumno a borrar es: \n");
             mostrarAlumno(alumnos[i]);
             break;
+            }
         }
-    }
-    return alumnoABorrar;
+
+    return seBorro;
 }
 
 eAlumno cargarAlumno (void)

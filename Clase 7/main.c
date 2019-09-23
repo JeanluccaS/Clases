@@ -38,6 +38,8 @@ int main()
                 break;
             case 5:
                 listarAlumnos(listadoDeAlumnos,MAX);
+                printf("\n");
+                system("pause");
                 break;
             case 6:
                 printf ("\nSaliendo...");
