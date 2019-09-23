@@ -84,21 +84,19 @@ int buscarAlumno(eAlumno alumnos[],int cantidad)
 {
     int i;
     int numero;
-    int loEncontre=0;
+    int loEncontre=-1;
     numero=pedirEntero("\n\nIngrese el legajo a buscar: ");
     for(i=0; i<cantidad; i++)
     {
-        if(numero==alumnos[i].legajo)
+        if(numero==alumnos[i].legajo && alumnos[i].estaVacio==OCUPADO)
         {
-            loEncontre=1;
-            printf("\nLegajo\t\tNombre\t\tNota\n");
-            mostrarAlumno(alumnos[i]);
+            loEncontre=i;
         }
     }
     return loEncontre;
 }
 
-void pedirString (char mensaje[],char contenido[])
+void pedirString (char mensaje[],char contenido[], char mensajeDeError[])
 {
     char auxString[100];
     printf("%s",mensaje);
@@ -107,7 +105,7 @@ void pedirString (char mensaje[],char contenido[])
     while(strlen(auxString)>50)
     {
         char auxString[100];
-        printf("Error, Re%s",mensaje);
+        printf(mensajeDeError,mensaje);
         fflush(stdin);
         gets(auxString);
     }
@@ -123,26 +121,79 @@ int pedirEntero (char mensaje[])
     return numero;
 }
 
+int modificarAlumno(eAlumno alumnos[],int cantidad)
+{
+    int seModifico=0; //0 si no se pudo borrar, 1 si se pudo borrar
+    int alumnoAModificar;
+    int nota;
+    int opcion;
+    char nombre[50];
+    char respuesta;
+    eAlumno aux;
+    alumnoAModificar=buscarAlumno(alumnos,cantidad);
+    aux = alumnos[alumnoAModificar];
+    if(alumnoAModificar!=-1)
+    {
+            seModifico=1;
+
+            printf("\nEl alumno a Modificar es: \n");
+            mostrarAlumno(alumnos[alumnoAModificar]);
+            opcion=pedirEntero("\n Que dato desea modificar?\n1. Nombre\n2. Nota\n Ingrese una opcion: ");
+            switch(opcion)
+            {
+            case 1:
+                pedirString("Ingrese nuevo nombre: ",nombre,"Error, reingrese un nombre valido (maximo 50 caracteres)");
+                strcpy(aux.nombre,nombre);
+                break;
+            case 2:
+                nota=pedirEntero("Ingrese una nueva nota: ");
+                aux.nota=nota;
+                break;
+            case 3:
+                printf("Saliendo...");
+                break;
+            default:
+                printf("Opcion no valida");
+            }
+            if(seModifico==1)
+            {
+                printf("\nEl alumno a modificar va a quedar de la siguiente manera: ");
+                mostrarAlumno(aux);
+                printf("\nDesea guardar los cambios? 's' para guardar.");
+                respuesta=getchar();
+                if(respuesta=='s')
+                {
+                    alumnos[alumnoAModificar]=aux;
+                }
+                else
+                {
+                    printf("\nNo se realizo la modificacion");
+                }
+            }
+
+    }
+    return seModifico;
+}
+
 int borrarAlumno (eAlumno alumnos[], int cantidad)
 {
-    int i;
+
     int seBorro=0; //0 si no se pudo borrar, 1 si se pudo borrar
     int alumnoABorrar;
-    alumnoABorrar=pedirEntero("Ingrese el legajo a buscar ");
-
-
-
-        for(i=0; i<cantidad; i++)
-        {
+    alumnoABorrar=buscarAlumno(alumnos,cantidad);
+    if(alumnoABorrar!=-1)
+    {
             seBorro=1;
-            if(alumnos[i].estaVacio==OCUPADO && alumnos[i].legajo==alumnoABorrar)
-            {
-            alumnos[i].estaVacio=LIBRE;
+            alumnos[alumnoABorrar].estaVacio=LIBRE;
             printf("\nEl alumno a borrar es: \n");
-            mostrarAlumno(alumnos[i]);
-            break;
-            }
-        }
+            mostrarAlumno(alumnos[alumnoABorrar]);
+    }
+
+
+
+
+
+
 
     return seBorro;
 }

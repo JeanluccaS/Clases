@@ -42,13 +42,17 @@ int main()
                 system("pause");
                 break;
             case 6:
+                modificarAlumno(listadoDeAlumnos,MAX);
+                break;
+            case 7:
                 printf ("\nSaliendo...");
                 break;
-                default: printf("\nOpcion incorrecta!!");
+            default: printf("\nOpcion incorrecta!!");
+
         }
 
 
-    }while(opcion!=6);
+    }while(opcion!=7);
 
 
 
