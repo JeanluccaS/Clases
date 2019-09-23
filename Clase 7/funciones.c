@@ -70,12 +70,14 @@ void hardcodearAlumno(eAlumno alumnos[],int tam)
     char nombres[][20]= {"jean","Thomas","brian","flor","pipo"};
     int notas[]= {10,7,8,9,5};
     int legajos[]= {14,54,77,22,1};
+    int localidades[]={{30,"Monserrat",1065}{88,"Avellaneda",1750}{45,"San Telmo",1900}} //se hardcodea solo el ID. y en otra funcion se hardcodea las localidades.
 
     for(i=0; i<tam; i++)
     {
         strcpy(alumnos[i].nombre,nombres[i]);
         alumnos[i].nota=notas[i];
         alumnos[i].legajo=legajos[i];
+        alumnos[i].idLocalidad=localidades[i]
         alumnos[i].estaVacio=OCUPADO;
     }
 }

@@ -8,8 +8,14 @@ typedef struct{
    int nota;
    int legajo;
    int estaVacio;// 0 para esta vacio, 1 para no esta vacio
-
+   int idLocalidad;
 }eAlumno;
+
+typedef struct{
+int id;
+char localidad[30];
+int codigo postal;
+}eLocalidad
 
 void inicializarAlumnos(eAlumno[],int cantidad,int estado);
 void hardcodearAlumno(eAlumno[],int cantidad);
