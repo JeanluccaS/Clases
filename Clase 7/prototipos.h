@@ -14,13 +14,13 @@ typedef struct{
 typedef struct{
 int id;
 char localidad[30];
-int codigo postal;
-}eLocalidad
+int codigoPostal;
+}eLocalidad;
 
 void inicializarAlumnos(eAlumno[],int cantidad,int estado);
 void hardcodearAlumno(eAlumno[],int cantidad);
-int listarAlumnos(eAlumno[],int cantidad);
-void mostrarAlumno(eAlumno);
+int listarAlumnosConLocalidad(eAlumno listaDeAlumnos[],int cantidad,eLocalidad listaDeLocalidades[],int tl);
+void mostrarAlumno(eAlumno,eLocalidad);
 int dameIndiceLibre(eAlumno[],int cantidad);
 int cargarAlumnos (eAlumno listaDeAlumnos[],int cantidad);
 void pedirString (char mensaje[],char contenido[],char mensajeDeError[]);
@@ -29,3 +29,4 @@ int buscarAlumno(eAlumno[],int cantidad);
 int borrarAlumno(eAlumno[],int cantidad);
 eAlumno cargarAlumno (void);
 int modificarAlumno(eAlumno[],int cantidad);
+int buscarLocalidadPorId(eLocalidad listaDeLocalidades[],int tl,int idLocalidad);

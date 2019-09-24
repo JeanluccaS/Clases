@@ -1,5 +1,6 @@
 #include "prototipos.h"
 #define MAX 10
+#define MAXL 3
  ///typedef define tipos de dato.
 
 
@@ -11,6 +12,7 @@ int main()
 
 
     eAlumno listadoDeAlumnos[MAX];
+    eLocalidad listadoDeLocalidades[MAXL];
 
     inicializarAlumnos(listadoDeAlumnos,MAX,LIBRE);
 
@@ -19,7 +21,8 @@ int main()
     do
     {
         printf("\n1. Cargar Alumno.\n2. Cargar 5 alumnos predeterminados.\n3. Dar de baja un alumno");
-        printf("\n4. Buscar alumno.\n5. Listar alumnos.\n6. Salir");
+        printf("\n4. Buscar alumno.\n5. Listar alumnos.\n6. Modificar \n7. Hardcodear Localidades");
+        printf("\n8. Salir");
         printf("\nIngrese una opcion: ");
         scanf("%d",&opcion);
         switch(opcion)
@@ -37,7 +40,7 @@ int main()
                 buscarAlumno(listadoDeAlumnos,MAX);
                 break;
             case 5:
-                listarAlumnos(listadoDeAlumnos,MAX);
+                listarAlumnosConLocalidad(listadoDeAlumnos,MAX,listadoDeLocalidades,MAXL);
                 printf("\n");
                 system("pause");
                 break;
@@ -45,9 +48,12 @@ int main()
                 modificarAlumno(listadoDeAlumnos,MAX);
                 break;
             case 7:
-                printf ("\nSaliendo...");
+                hardcodearLocalidad(listadoDeLocalidades,MAXL);
                 break;
-            default: printf("\nOpcion incorrecta!!");
+            case 8: printf("\nSaliendo..");
+                break;
+            default:
+                printf("Opcion incorrecta");
 
         }
 

@@ -24,27 +24,34 @@ int cargarAlumnos (eAlumno listaDeAlumnos[],int cantidad)
     return sePudo;
 }
 
-int listarAlumnos(eAlumno listaDeAlumnos[],int cantidad)
+
+int listarAlumnosConLocalidad(eAlumno listaDeAlumnos[],int cantidad,eLocalidad listaDeLocalidades[],int tl)
 {
     int i;
     int tieneAlumnos=0;
-    printf("\nLegajo\t\tNombre\t\tNota\n");
-    for(i=0; i<cantidad; i++)
+    eLocalidad Localidad;
+    int index;
+     printf("\nLegajo\t\tNombre\t\tNota\tLocalidad \n");
+    for (i=0;i<cantidad;i++)
     {
-        if(listaDeAlumnos[i].estaVacio==OCUPADO)
+          index=buscarLocalidadPorId(listaDeLocalidades,tl,listaDeAlumnos[i].idLocalidad);
+         if(listaDeAlumnos[i].estaVacio==OCUPADO)
         {
+            Localidad=listaDeLocalidades[index];
             tieneAlumnos=1;
-            mostrarAlumno(listaDeAlumnos[i]);
+            mostrarAlumno(listaDeAlumnos[i],Localidad);
         }
     }
     return tieneAlumnos;
 }
 
-void mostrarAlumno(eAlumno alumno)
+
+void mostrarAlumno(eAlumno alumno, eLocalidad localidad)
 {
     printf ("\n%d",alumno.legajo);
     printf("\t\t%s",alumno.nombre);
     printf("\t\t%d",alumno.nota);
+    printf("\t\t%s",localidad.localidad);
 }
 
 
@@ -64,20 +71,36 @@ int dameIndiceLibre(eAlumno listaDeAlumnos[],int cantidad)
 
 }
 
+void hardcodearLocalidad(eLocalidad Localidades[],int tam)
+{
+    int i;
+    char nombresLocalidad[][20]={"Monserrat","Avellaneda","San Telmo"};
+    int id[]={1,2,3};
+    int codigoPostal[]={1999,1095,1785};
+
+    for(i=0;i<tam;i++)
+    {
+        strcpy(Localidades[i].localidad,nombresLocalidad[i]);
+        Localidades[i].id=id[i];
+        Localidades[i].codigoPostal=codigoPostal[i];
+    }
+
+}
+
 void hardcodearAlumno(eAlumno alumnos[],int tam)
 {
     int i;
     char nombres[][20]= {"jean","Thomas","brian","flor","pipo"};
     int notas[]= {10,7,8,9,5};
     int legajos[]= {14,54,77,22,1};
-    int localidades[]={{30,"Monserrat",1065}{88,"Avellaneda",1750}{45,"San Telmo",1900}} //se hardcodea solo el ID. y en otra funcion se hardcodea las localidades.
+    int idLocalidades[]={1,1,2,3,1}; //se hardcodea solo el ID. y en otra funcion se hardcodea las localidades.
 
     for(i=0; i<tam; i++)
     {
         strcpy(alumnos[i].nombre,nombres[i]);
         alumnos[i].nota=notas[i];
         alumnos[i].legajo=legajos[i];
-        alumnos[i].idLocalidad=localidades[i]
+        alumnos[i].idLocalidad=idLocalidades[i];
         alumnos[i].estaVacio=OCUPADO;
     }
 }
@@ -96,6 +119,20 @@ int buscarAlumno(eAlumno alumnos[],int cantidad)
         }
     }
     return loEncontre;
+}
+
+int buscarLocalidadPorId(eLocalidad localidad[],int tl,int idLocalidad)
+{
+    int i;
+    int index=-1;
+    for(i=0;i<tl;i++)
+    {
+        if (localidad[i].id==idLocalidad)
+        {
+            index=i;
+        }
+    }
+    return index;
 }
 
 void pedirString (char mensaje[],char contenido[], char mensajeDeError[])
@@ -123,17 +160,20 @@ int pedirEntero (char mensaje[])
     return numero;
 }
 
-int modificarAlumno(eAlumno alumnos[],int cantidad)
+int modificarAlumno(eAlumno alumnos[],int cantidad,eLocalidad listaDeLocalidades[],int tl)
 {
     int seModifico=0; //0 si no se pudo borrar, 1 si se pudo borrar
     int alumnoAModificar;
     int nota;
     int opcion;
+    int index;
     char nombre[50];
     char respuesta;
-    eAlumno aux;
+    eAlumno auxAlumno;
+    eLocalida auxLocalidad;
+
     alumnoAModificar=buscarAlumno(alumnos,cantidad);
-    aux = alumnos[alumnoAModificar];
+    auxAlumno = alumnos[alumnoAModificar];
     if(alumnoAModificar!=-1)
     {
             seModifico=1;
@@ -177,7 +217,7 @@ int modificarAlumno(eAlumno alumnos[],int cantidad)
     return seModifico;
 }
 
-int borrarAlumno (eAlumno alumnos[], int cantidad)
+int borrarAlumno (eAlumno alumnos[], int cantidad,eLocalidad[],int tl)
 {
 
     int seBorro=0; //0 si no se pudo borrar, 1 si se pudo borrar
