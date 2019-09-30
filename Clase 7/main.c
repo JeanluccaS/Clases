@@ -13,16 +13,14 @@ int main()
 
     eAlumno listadoDeAlumnos[MAX];
     eLocalidad listadoDeLocalidades[MAXL];
-
-    inicializarAlumnos(listadoDeAlumnos,MAX,LIBRE);
-
     int opcion;
-
+    int retorno;
+    inicializarAlumnos(listadoDeAlumnos,MAX,LIBRE);
     do
     {
         printf("\n1. Cargar Alumno.\n2. Cargar 5 alumnos predeterminados.\n3. Dar de baja un alumno");
         printf("\n4. Buscar alumno.\n5. Listar alumnos.\n6. Modificar \n7. Hardcodear Localidades");
-        printf("\n8. Salir");
+        printf("\n8. listar Localidades.\n9 salir");
         printf("\nIngrese una opcion: ");
         scanf("%d",&opcion);
         switch(opcion)
@@ -34,7 +32,7 @@ int main()
                 hardcodearAlumno(listadoDeAlumnos,5);
                 break;
             case 3:
-                borrarAlumno(listadoDeAlumnos,MAX);
+                borrarAlumno(listadoDeAlumnos,MAX,listadoDeLocalidades,MAXL);
                 break;
             case 4:
                 buscarAlumno(listadoDeAlumnos,MAX);
@@ -45,20 +43,33 @@ int main()
                 system("pause");
                 break;
             case 6:
-                modificarAlumno(listadoDeAlumnos,MAX);
+                modificarAlumno(listadoDeAlumnos,MAX,listadoDeLocalidades,MAXL);
                 break;
             case 7:
                 hardcodearLocalidad(listadoDeLocalidades,MAXL);
                 break;
-            case 8: printf("\nSaliendo..");
+            case 8:
+
+                retorno=listarLocalidades(listadoDeAlumnos,listadoDeLocalidades,MAXL);
+                if( retorno==-1)
+                {
+                    printf("No se pudieron listar las localidades");
+                }
                 break;
+            case 9:
+                mostrarPorLocalidad(listadoDeAlumnos,listadoDeLocalidades,MAX,MAXL);
+                break;
+            case 10: printf("\nSaliendo..");
+                break;
+
+
             default:
                 printf("Opcion incorrecta");
 
         }
 
 
-    }while(opcion!=7);
+    }while(opcion!=10);
 
 
 

@@ -45,6 +45,30 @@ int listarAlumnosConLocalidad(eAlumno listaDeAlumnos[],int cantidad,eLocalidad l
     return tieneAlumnos;
 }
 
+void mostrarPorLocalidad(eAlumno listaDeAlumnos[],eLocalidad listaDeLocalidades[],int ta,int tl)
+{
+    int i;
+    for(i=0;i<tl;i++)
+    {
+        mostrarUnaLocalidad(listaDeLocalidades[i]);
+    }
+}
+
+
+int mostrarAlumnosDeAvellaneda(eAlumno listaDeAlumnos[],eLocalidad listaDeLocalidades[],int ta,int tl)
+{
+    int i;
+    int sePudo=-1;
+    char opcion[]={"Avellaneda"};
+    for (i=0;i<ta;i++)
+    {
+        if(strcmp(listaDeLocalidades[i].localidad,opcion))
+        {
+            listarAlumnosConLocalidad(listaDeAlumnos,ta,listaDeLocalidades,tl);
+        }
+    }
+    return sePudo;
+}
 
 void mostrarAlumno(eAlumno alumno, eLocalidad localidad)
 {
@@ -54,6 +78,30 @@ void mostrarAlumno(eAlumno alumno, eLocalidad localidad)
     printf("\t\t%s",localidad.localidad);
 }
 
+void mostrarUnaLocalidad(eLocalidad localidades)
+{
+    printf("\n\t%d",localidades.id);
+    printf("\t%s",localidades.localidad);
+    printf("\t%d",localidades.codigoPostal);
+}
+
+int listarLocalidades (eAlumno listaDeAlumnos[],eLocalidad localidades[],int tl)
+{
+    int i;
+    int sePudo=-1;
+    printf("\tID\tLocalidad\tCodigo postal\n");
+
+    for(i=0;i<tl;i++)
+    {
+        if (listaDeAlumnos[i].estaVacio==OCUPADO)
+        {
+            sePudo=0;
+            mostrarUnaLocalidad(localidades[i]);
+        }
+
+    }
+    return sePudo;
+}
 
 int dameIndiceLibre(eAlumno listaDeAlumnos[],int cantidad)
 {
@@ -84,8 +132,9 @@ void hardcodearLocalidad(eLocalidad Localidades[],int tam)
         Localidades[i].id=id[i];
         Localidades[i].codigoPostal=codigoPostal[i];
     }
-
 }
+
+
 
 void hardcodearAlumno(eAlumno alumnos[],int tam)
 {
@@ -163,33 +212,30 @@ int pedirEntero (char mensaje[])
 int modificarAlumno(eAlumno alumnos[],int cantidad,eLocalidad listaDeLocalidades[],int tl)
 {
     int seModifico=0; //0 si no se pudo borrar, 1 si se pudo borrar
-    int alumnoAModificar;
+    int index;
     int nota;
     int opcion;
-    int index;
     char nombre[50];
     char respuesta;
     eAlumno auxAlumno;
-    eLocalida auxLocalidad;
-
-    alumnoAModificar=buscarAlumno(alumnos,cantidad);
-    auxAlumno = alumnos[alumnoAModificar];
-    if(alumnoAModificar!=-1)
+    index=buscarAlumno(alumnos,cantidad);
+    auxAlumno = alumnos[index];
+    if(index!=-1)
     {
             seModifico=1;
 
             printf("\nEl alumno a Modificar es: \n");
-            mostrarAlumno(alumnos[alumnoAModificar]);
+            mostrarAlumno(alumnos[index],listaDeLocalidades[index]);
             opcion=pedirEntero("\n Que dato desea modificar?\n1. Nombre\n2. Nota\n Ingrese una opcion: ");
             switch(opcion)
             {
             case 1:
                 pedirString("Ingrese nuevo nombre: ",nombre,"Error, reingrese un nombre valido (maximo 50 caracteres)");
-                strcpy(aux.nombre,nombre);
+                strcpy(auxAlumno.nombre,nombre);
                 break;
             case 2:
                 nota=pedirEntero("Ingrese una nueva nota: ");
-                aux.nota=nota;
+                auxAlumno.nota=nota;
                 break;
             case 3:
                 printf("Saliendo...");
@@ -200,12 +246,12 @@ int modificarAlumno(eAlumno alumnos[],int cantidad,eLocalidad listaDeLocalidades
             if(seModifico==1)
             {
                 printf("\nEl alumno a modificar va a quedar de la siguiente manera: ");
-                mostrarAlumno(aux);
+                mostrarAlumno(auxAlumno,listaDeLocalidades[index]);
                 printf("\nDesea guardar los cambios? 's' para guardar.");
                 respuesta=getchar();
                 if(respuesta=='s')
                 {
-                    alumnos[alumnoAModificar]=aux;
+                    alumnos[index]=auxAlumno;
                 }
                 else
                 {
@@ -217,26 +263,18 @@ int modificarAlumno(eAlumno alumnos[],int cantidad,eLocalidad listaDeLocalidades
     return seModifico;
 }
 
-int borrarAlumno (eAlumno alumnos[], int cantidad,eLocalidad[],int tl)
+int borrarAlumno (eAlumno alumnos[], int cantidad,eLocalidad listaDeLocalidades[],int tl)
 {
-
     int seBorro=0; //0 si no se pudo borrar, 1 si se pudo borrar
-    int alumnoABorrar;
-    alumnoABorrar=buscarAlumno(alumnos,cantidad);
-    if(alumnoABorrar!=-1)
+    int index;
+    index=buscarAlumno(alumnos,cantidad);
+    if(index!=-1)
     {
             seBorro=1;
-            alumnos[alumnoABorrar].estaVacio=LIBRE;
+            alumnos[index].estaVacio=LIBRE;
             printf("\nEl alumno a borrar es: \n");
-            mostrarAlumno(alumnos[alumnoABorrar]);
+            mostrarAlumno(alumnos[index],listaDeLocalidades[index]);
     }
-
-
-
-
-
-
-
     return seBorro;
 }
 
