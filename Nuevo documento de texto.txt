@@ -1,0 +1,1 @@
+si el archivo no existe, lo crea y lo abre, si existe, lo reemplaza/sobreescribe y lo abre (modo W)
